@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  odoo:
+    container_name: odoo_iak
+    working_dir: /var/lib/odoo
+    depends_on:
+      - db
+    image: odoo:17.0-20250909
+    ports:
+      - 8069:8069
+    command: ['odoo', '--addons-path=/var/lib/odoo/enterprise,/var/lib/odoo/IAK-Agrar-Consulting-GmbH', "-d", "iak" , "-r", "odoo", "-w", "odoo", "-i", "base,web", "--dev", "xml"]
+    volumes:
+      - ../enterprise:/var/lib/odoo/enterprise
+      - ./IAK-Agrar-Consulting-GmbH:/var/lib/odoo/IAK-Agrar-Consulting-GmbH
+      - ./addons:/var/lib/odoo/addons:rw
+      - ./extra-addons:/mnt/extra-addons:rw
+      - ./config:/etc/odoo:rw
+      - ./odoo-logs:/etc/odoo-logs:rw
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=odoo
+      - DB_PASSWORD=odoo
+      - DB_NAME=iak
+
+  db:
+    container_name: db_iak
+    image: postgres:13-alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=iak
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+    volumes:
+      - ./odoo-db-data:/var/lib/postgresql/data
+    restart: always
