@@ -33,7 +33,7 @@ It supports both **Windows (via WSL + Docker Desktop)** and **Linux (Docker only
 3. **Create a new repository from this boilerplase as a template**
    > Use GitHub's "Start with a Template" option.
 
-4. **Configure environment variables:
+4. **Configure environment variables:**
    > Copy .env.example -> .env
    ```bash
    cp .env.example .env
