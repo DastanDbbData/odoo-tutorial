@@ -3,3 +3,4 @@
 !docker-compose.yml
 !odoo.conf
 !*/odoo.conf
+!.env.example
