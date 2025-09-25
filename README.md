@@ -42,8 +42,8 @@ It supports both **Windows (via WSL + Docker Desktop)** and **Linux (Docker only
      > ODOO_ENTERPRISE_LOCAL_PATH=[path to the the enterprise addons]
      > Database credentials: DB_USER, DB_PASSWORD, DB_TABLE
 5. **Custom Addons projects**
-   > Create the addons project folder containing the __manifest__.py and __init__pny
-   > Update docker-compose.yml by adding the path of the addons into the command block
+   > Create the addons folder. Modules are defined in the subfolder containing the __manifest__.py and __init__.py
+   > Update docker-compose.yml by adding the path of the addons folder into the command block
    > example:
    ```yaml
    services:
