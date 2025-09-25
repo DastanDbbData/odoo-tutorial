@@ -9,9 +9,11 @@ services:
     image: odoo:19.0-20250918
     ports:
       - 8069:8069
-    command: ['odoo', '--addons-path=/var/lib/odoo/enterprise', "-d", "${DB_TABLE}" , "-r", "${DB_USER}", "-w", "${DB_PASSWORD}", "-i", "base,web", "--dev", "xml"]
+    # Use this line to include enterprise addons
+    # command: ['odoo', '--addons-path=/var/lib/odoo/enterprise', "-d", "${DB_TABLE}" , "-r", "${DB_USER}", "-w", "${DB_PASSWORD}", "-i", "base,web", "--dev", "xml"] 
+    command: ['odoo', '--addons-path=', "-d", "${DB_TABLE}" , "-r", "${DB_USER}", "-w", "${DB_PASSWORD}", "-i", "base,web", "--dev", "xml"]
     volumes:
-      - ./${ODOO_ENTERPRISE_LOCAL_PATH}:/var/lib/odoo/enterprise
+      # - ./${ODOO_ENTERPRISE_LOCAL_PATH}:/var/lib/odoo/enterprise # Uncomment this line to include enterprise addons
       - ./addons:/var/lib/odoo/addons:rw
       - ./extra-addons:/mnt/extra-addons:rw
       - ./config:/etc/odoo:rw
