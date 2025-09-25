@@ -6,7 +6,7 @@ services:
     working_dir: /var/lib/odoo
     depends_on:
       - db
-    image: odoo:17.0-20250909
+    image: odoo:19.0-20250918
     ports:
       - 8069:8069
     command: ['odoo', '--addons-path=/var/lib/odoo/enterprise', "-d", "${DB_TABLE}" , "-r", "${DB_USER}", "-w", "${DB_PASSWORD}", "-i", "base,web", "--dev", "xml"]
